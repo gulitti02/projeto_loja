@@ -1,0 +1,35 @@
+<%- include ("partials/header.ejs") %>
+<body>
+    <%- include ("partials/navbar.ejs") %>
+    <div class="container">
+        <hr>
+        <h1>Produtos</h1>
+        <hr>
+        <a href="/cadastrar" class="btn-primary">Cadastrar</a>
+        <% cadastros.forEach(function(p) { %> <!-- Alterado para 'produtos' -->
+            <br>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><%= p.nome %></h5> <!-- Exibindo o nome do produto -->
+                    <p class="card-text"><%= p.descricao %></p> <!-- Exibindo a descrição do produto -->
+                    <p class="card-text">
+                        Preço: R$ 
+                        <%= (parseFloat(p.preco) || 0).toFixed(2) %> <!-- Garantir que p.preco seja um número antes de usar .toFixed -->
+                    </p> 
+                    <% if (p.imagem) { %> <!-- Verificando se há uma imagem -->
+                        <img src="<%= p.imagem %>" alt="<%= p.nome %>" class="img-fluid"> <!-- Exibindo a imagem -->
+                    <% } %>
+                </div>
+               
+            </div>
+        <% }); %>
+    </div>
+
+
+
+    
+</body>
+
+
+<%- include ("partials/footer.ejs") %>
